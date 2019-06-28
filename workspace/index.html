@@ -15,6 +15,16 @@
   function ajax(options) {
     let params = formsParams(options.data);
 
+    // 设置默认参数
+    let defaultObj = {
+      type: 'GET',
+      url: '',
+      data: {},
+      async: true
+    }
+
+    let options = Object.assign({}, defaultObj, options) // 用户设置覆盖默认设置
+
     // 创建对象
     let xhr = null;
     if (window.XMLHttpRequest) {
