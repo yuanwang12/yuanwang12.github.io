@@ -7,7 +7,7 @@ const Person = props => {
   }
   return (
     <div className="personWrapp">
-      <h3>我的名字是：<span style={style}>{props.name}</span> ，我的年龄是<span style={style}>{props.age}</span></h3>
+      <h3 onClick={props.myclick}>我的名字是：<span style={style}>{props.name}</span> ，我的年龄是<span style={style}>{props.age}</span></h3>
     </div>
   )
 }
