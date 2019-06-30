@@ -1,10 +1,13 @@
 import React from 'react'
 import './Person.css'
 
-const Person = () => {
+const Person = props => {
+  const style = {
+    color: 'red'
+  }
   return (
     <div className="personWrapp">
-      <h3>我是第一个Person组件</h3>
+      <h3>我的名字是：<span style={style}>{props.name}</span> ，我的年龄是<span style={style}>{props.age}</span></h3>
     </div>
   )
 }
