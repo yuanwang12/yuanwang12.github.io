@@ -26,14 +26,15 @@ class App extends React.Component {
   }
 
   // changeVal
-  changeVal = event => {
+  changeVal = (event, id) => {
     let newName = event.target.value;
+    let personIndex = this.state.persons.findIndex(item => {
+      return item.id === id
+    })
+    let personsArr = [...this.state.persons];
+    personsArr[personIndex].name = newName;
     this.setState({
-      persons: [
-        { name: newName, age: "23", id: "1" },
-        { name: newName, age: "23", id: "2" },
-        { name: newName, age: "33", id: "3" }
-      ]
+      persons: personsArr
     })
   }
   style = {
@@ -50,7 +51,7 @@ class App extends React.Component {
   }
 
   // deletePerson
-  deletePerson = (event, id) => {
+  deletePerson = (id) => {
     // 通过id查找当前id所在对象
     let personIndex = this.state.persons.findIndex(obj => {
       return obj.id === id;
@@ -71,8 +72,9 @@ class App extends React.Component {
         persons.map(personObj => {
           console.log(personObj)
           return <Person
-            key={personObj.age}
-            deleteThisObj={event => this.deletePerson(event, personObj.id)}
+            key={personObj.id}
+            deleteThisObj={() => this.deletePerson(personObj.id)}
+            changepersonInfo={event => this.changeVal(event, personObj.id)}
             name={personObj.name}
             age={personObj.age} />
         })
