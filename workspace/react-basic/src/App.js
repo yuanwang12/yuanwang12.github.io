@@ -36,14 +36,25 @@ class App extends React.Component {
       ]
     })
   }
+  style = {
+    border: '1px solid #22222',
+    backgroundColor: 'gray'
+  }
 
   render () {
+    // const style = {
+    //   border: '1px solid #22222',
+    //   backgroundColor: 'gray'
+    // }
     return (
       <div className="main">
         <h3>Hello World</h3>
-        <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[1].name} age={this.state.persons[1].age} />
-        <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[2].name} age={this.state.persons[2].age} />
+        <div style={this.style}>
+          <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[0].name} age={this.state.persons[0].age} />
+          <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[1].name} age={this.state.persons[1].age} />
+          <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[2].name} age={this.state.persons[2].age} />
+        </div>
+
       </div>
     )
   }
