@@ -54,14 +54,10 @@ class App extends React.Component {
     let person = null;
     if (this.state.personState) {
       person = (
-        <div style={this.style}>
-          <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[0].name} age={this.state.persons[0].age} />
-          <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[1].name} age={this.state.persons[1].age} />
-          <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[2].name} age={this.state.persons[2].age} />
-        </div>
+        this.state.persons.map(personObj => {
+          return <Person name={personObj.name} age={personObj.age} />
+        })
       )
-    } else {
-      person = null;
     }
 
     return (
