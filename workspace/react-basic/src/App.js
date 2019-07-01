@@ -11,7 +11,7 @@ class App extends React.Component {
       { name: "汪渊2号", age: "20" },
       { name: "汪渊3号", age: "22" }
     ],
-    status: false
+    personState: false
   }
 
   // changePerson
@@ -41,19 +41,35 @@ class App extends React.Component {
     backgroundColor: 'gray'
   }
 
+  // toggleState
+  toggleState = () => {
+    let personState = this.state.personState;
+    this.setState({
+      personState: !personState
+    });
+  }
+
   render () {
-    // const style = {
-    //   border: '1px solid #22222',
-    //   backgroundColor: 'gray'
-    // }
-    return (
-      <div className="main">
-        <h3>Hello World</h3>
+
+    let person = null;
+    if (this.state.personState) {
+      person = (
         <div style={this.style}>
           <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[0].name} age={this.state.persons[0].age} />
           <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[1].name} age={this.state.persons[1].age} />
           <Person changeInputValue={(event) => this.changeVal(event)} myclick={this.changePerson} name={this.state.persons[2].name} age={this.state.persons[2].age} />
         </div>
+      )
+    } else {
+      person = null;
+    }
+
+    return (
+      <div className="main">
+        <h3>Hello World</h3>
+        <button onClick={this.toggleState}>切换状态</button>
+        {person}
+
 
       </div>
     )
