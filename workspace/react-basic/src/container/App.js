@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Person from '../components/Person/Person';
+import Header from '../components/Header/Header'
+import Persons from '../components/Persons/Persons';
 
 
 class App extends React.Component {
@@ -11,18 +12,7 @@ class App extends React.Component {
       { name: "汪渊2号", age: "20", id: "2" },
       { name: "汪渊3号", age: "22", id: "3" }
     ],
-    personState: false
-  }
-
-  // changePerson
-  changePerson = () => {
-    this.setState({
-      persons: [
-        { name: "汪渊001号", age: "23", id: "1" },
-        { name: "汪渊002号", age: "23", id: "2" },
-        { name: "汪渊003号", age: "33", id: "3" }
-      ]
-    })
+    personState: true
   }
 
   // changeVal
@@ -38,7 +28,7 @@ class App extends React.Component {
     })
   }
 
-  // toggleState
+  // 切换状态
   toggleState = () => {
     let personState = this.state.personState;
     this.setState({
@@ -46,7 +36,7 @@ class App extends React.Component {
     });
   }
 
-  // deletePerson
+  // 删除当前数据
   deletePerson = (id) => {
     // 通过id查找当前id所在对象
     let personIndex = this.state.persons.findIndex(obj => {
@@ -65,30 +55,6 @@ class App extends React.Component {
       backgroundColor: 'green',
       color: '#fff'
     }
-    // text
-    const text = (
-      <p style={{ paddingLeft: 24 }}>
-        我的第一个antd组件
-      </p>
-    );
-
-    // 加载dom
-    let person = null;
-    if (this.state.personState) {
-      let persons = [...this.state.persons]
-      person = (
-        persons.map(personObj => {
-          console.log(personObj)
-          return <Person
-            key={personObj.id}
-            deleteThisObj={() => this.deletePerson(personObj.id)}
-            changepersonInfo={event => this.changeVal(event, personObj.id)}
-            name={personObj.name}
-            age={personObj.age} />
-        })
-      )
-      style.backgroundColor = "red";
-    }
 
     let classes = [];
     let personLength = this.state.persons.length;
@@ -105,9 +71,14 @@ class App extends React.Component {
     // 渲染dom
     return (
       <div className="main">
-        <h3 className={classes.join(" ")}>Hello World</h3>
-        <button style={style} onClick={this.toggleState}>切换状态</button>
-        {person}
+        <Header
+          classes={classes.join(" ")}
+          headerStyle={style}
+          toggleState={this.toggleState} />
+        <Persons
+          deletePerson={this.deletePerson}
+          changeVal={this.changeVal}
+          state={this.state} />
       </div>
     )
   }
