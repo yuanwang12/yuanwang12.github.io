@@ -3,7 +3,6 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends React.Component {
-
   // state
   state = {
     persons: [
@@ -37,10 +36,6 @@ class App extends React.Component {
       persons: personsArr
     })
   }
-  style = {
-    border: '1px solid #22222',
-    backgroundColor: 'gray'
-  }
 
   // toggleState
   toggleState = () => {
@@ -64,6 +59,11 @@ class App extends React.Component {
   }
 
   render () {
+    let style = {
+      border: '1px solid #22222',
+      backgroundColor: 'green',
+      color: '#fff'
+    }
     // 加载dom
     let person = null;
     if (this.state.personState) {
@@ -79,13 +79,26 @@ class App extends React.Component {
             age={personObj.age} />
         })
       )
+      style.backgroundColor = "red";
     }
 
+    let classes = [];
+    let personLength = this.state.persons.length;
+    if (personLength === 2) {
+      classes.push("red");
+    }
+    if (personLength === 1) {
+      classes.push("red");
+      classes.push("blod");
+    }
+    if (personLength === 3) {
+      classes = [];
+    }
     // 渲染dom
     return (
       <div className="main">
-        <h3>Hello World</h3>
-        <button onClick={this.toggleState}>切换状态</button>
+        <h3 className={classes.join(" ")}>Hello World</h3>
+        <button style={style} onClick={this.toggleState}>切换状态</button>
         {person}
       </div>
     )
