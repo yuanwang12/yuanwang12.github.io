@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Person from './Person/Person';
+import Person from '../components/Person/Person';
+
 
 class App extends React.Component {
   // state
@@ -64,6 +65,13 @@ class App extends React.Component {
       backgroundColor: 'green',
       color: '#fff'
     }
+    // text
+    const text = (
+      <p style={{ paddingLeft: 24 }}>
+        我的第一个antd组件
+      </p>
+    );
+
     // 加载dom
     let person = null;
     if (this.state.personState) {
