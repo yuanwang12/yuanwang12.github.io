@@ -56,23 +56,11 @@ class App extends React.Component {
       color: '#fff'
     }
 
-    let classes = [];
-    let personLength = this.state.persons.length;
-    if (personLength === 2) {
-      classes.push("red");
-    }
-    if (personLength === 1) {
-      classes.push("red");
-      classes.push("blod");
-    }
-    if (personLength === 3) {
-      classes = [];
-    }
     // 渲染dom
     return (
       <div className="main">
         <Header
-          classes={classes.join(" ")}
+          state={this.state}
           headerStyle={style}
           toggleState={this.toggleState} />
         <Persons
