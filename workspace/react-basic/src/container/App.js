@@ -60,6 +60,7 @@ class App extends React.Component {
     return (
       <div className="main">
         <Header
+          title={this.props.title}
           state={this.state}
           headerStyle={style}
           toggleState={this.toggleState} />
